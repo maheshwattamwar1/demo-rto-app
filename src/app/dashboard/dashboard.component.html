@@ -1,14 +1,16 @@
 <div class="container">
     <div class="row">
 
-        <div class="action-buttons">
-            <button type="button" class="btn btn-primary mx-1">Add</button>
-            <button type="button" class="btn btn-primary mx-1">Update</button>
-            <button type="button" class="btn btn-primary mx-1">Delete</button>
-        </div>
-     
+        <h3>Registered Owner List
+            <span class="action-buttons pull-right pb-2">
+                <a class="btn btn-primary mx-1" routerLink="/detail-form" >Add</a>
+                <a class="btn btn-primary mx-1">Update</a>
+                <a class="btn btn-primary mx-1" >Delete</a>
+            </span>
+        </h3>
+        
         <table class="table table-striped">
-            <thead>
+            <thead class="table-group-divider">
                 <tr>
                     <td>ID</td>
                     <td>Owner Name</td>
