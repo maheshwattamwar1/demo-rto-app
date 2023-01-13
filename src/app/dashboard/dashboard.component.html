@@ -1,11 +1,27 @@
-<p>dashboard works!</p>
+<div class="container">
+    <div class="row">
 
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-light">Light</button>
-<button type="button" class="btn btn-dark">Dark</button>
-<button type="button" class="btn btn-link">Link</button>
+        <div class="action-buttons">
+            <button type="button" class="btn btn-primary mx-1">Add</button>
+            <button type="button" class="btn btn-primary mx-1">Update</button>
+            <button type="button" class="btn btn-primary mx-1">Delete</button>
+        </div>
+     
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Owner Name</td>
+                    <td>Car Number</td>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr *ngFor="let detail of detailsArr">
+                    <td>{{detail.id}}</td>
+                    <td>{{detail.ownerName}}</td>
+                    <td>{{detail.vehicleNumber}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
