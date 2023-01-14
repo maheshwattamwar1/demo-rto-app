@@ -12,16 +12,14 @@
         <table class="table table-striped">
             <thead class="table-group-divider">
                 <tr>
-                    <td>ID</td>
                     <td>Owner Name</td>
                     <td>Car Number</td>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
                 <tr *ngFor="let detail of detailsArr">
-                    <td>{{detail.id}}</td>
                     <td>{{detail.ownerName}}</td>
-                    <td>{{detail.vehicleNumber}}</td>
+                    <td>{{detail.carNumber}}</td>
                 </tr>
             </tbody>
         </table>

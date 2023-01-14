@@ -1,22 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DetailService } from 'src/app/services/detail.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
-  constructor() {
-
+  detailsArr: any;
+  constructor(private detailService: DetailService) {
+    
   }
 
-  detailsArr = [
-    { id: 1, ownerName: 'Celeritas', vehicleNumber: 'mh12aa1111' },
-    { id: 2, ownerName: 'Magneta', vehicleNumber: 'mh12aa2222' },
-    { id: 3, ownerName: 'RubberMan', vehicleNumber: 'mh12aa3333' },
-    { id: 4, ownerName: 'Dynama', vehicleNumber: 'mh12aa4444' },
-    { id: 5, ownerName: 'Tornado', vehicleNumber: 'mh12aa5555' }
-  ];
+  ngOnInit() {
+    console.log("ngOnInit called");
+    this.detailsArr = this.detailService.getAllRecords();
+  }
+
 
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { DetailService } from 'src/app/services/detail.service';
 
 @Component({
   selector: 'app-detail-form',
@@ -13,7 +14,7 @@ export class DetailFormComponent {
     carNumber: ['', Validators.required]
   });
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private detailService: DetailService) {
     
   };
 
@@ -21,6 +22,7 @@ export class DetailFormComponent {
     // Process detail form data here
     //this.items = this.cartService.clearCart();
     console.warn('Your data has been submitted', this.detailForm.value);
+    this.detailService.saveDetails(this.detailForm.value);
     this.detailForm.reset();
   }
 
