@@ -1,14 +1,14 @@
 <div class="container">
     <div class="row">
         <h3>Basic Detail Form</h3>
-        <form>
+        <form [formGroup]="detailForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
                 <label for="inputOwnerName" class="form-label">Owner Name</label>
-                <input type="text" class="form-control" id="inputOwnerName">
+                <input type="text" class="form-control" id="inputOwnerName" formControlName="inputOwnerName">
             </div>
             <div class="mb-3">
                 <label for="inputCarNumber" class="form-label">Car Number</label>
-                <input type="text" class="form-control" id="inputCarNumber">
+                <input type="text" class="form-control" id="inputCarNumber" formControlName="inputCarNumber">
             </div>
             <button type="submit" class="btn btn-primary mx-1">Submit</button>
             <a routerLink="/dashboard" class="btn btn-secondary mx-1">Cancel</a>
