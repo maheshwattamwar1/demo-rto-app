@@ -9,8 +9,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class DetailFormComponent {
 
   detailForm = this.formBuilder.group({
-    inputOwnerName: ['', Validators.required],
-    inputCarNumber: ['', Validators.required]
+    ownerName: ['', Validators.required],
+    carNumber: ['', Validators.required]
   });
 
   constructor(private formBuilder: FormBuilder) {

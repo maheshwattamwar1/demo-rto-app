@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -17,6 +17,7 @@ import { DetailFormComponent } from './detail-form/detail-form.component';
   imports: [
     BrowserModule,
     NgbModule,
+    FormsModule,
     ReactiveFormsModule,
     AppRoutingModule
   ],

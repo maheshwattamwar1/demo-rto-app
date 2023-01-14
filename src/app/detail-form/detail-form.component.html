@@ -4,14 +4,20 @@
         <form [formGroup]="detailForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
                 <label for="inputOwnerName" class="form-label">Owner Name</label>
-                <input type="text" class="form-control" id="inputOwnerName" formControlName="inputOwnerName">
+                <input type="text" class="form-control" id="inputOwnerName" formControlName="ownerName">
             </div>
             <div class="mb-3">
                 <label for="inputCarNumber" class="form-label">Car Number</label>
-                <input type="text" class="form-control" id="inputCarNumber" formControlName="inputCarNumber">
+                <input type="text" class="form-control" id="inputCarNumber" formControlName="carNumber" maxlength="6">
             </div>
-            <button type="submit" class="btn btn-primary mx-1">Submit</button>
+
+            <p>Complete the form to enable button.</p>
+            <button type="submit"  class="btn btn-primary mx-1" [disabled]="!detailForm.valid">Submit</button>
             <a routerLink="/dashboard" class="btn btn-secondary mx-1">Cancel</a>
         </form>
+
+        <p>Form Value: {{ detailForm.value | json }}</p>
+        <p>Form Status: {{ detailForm.status }}</p>
+        
     </div>
 </div>
