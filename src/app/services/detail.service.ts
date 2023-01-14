@@ -16,7 +16,21 @@ export class DetailService {
   constructor() { }
 
   saveDetails(detail:any) {
+
+    let hasDuplicate = false;
+
+    // check if details already present
+    if (this.detailsArr.find(e => (e.ownerName === detail.ownerName && e.carNumber === detail.carNumber))) {
+      hasDuplicate=true;
+    }
+
+    // add detail only if not duplicate
+    if(hasDuplicate == false) {
+      this.detailsArr.push(detail);
+    }
+
     console.log(detail);
+    
   }
 
   getAllRecords() {

@@ -23,7 +23,7 @@ export class DetailFormComponent {
     //this.items = this.cartService.clearCart();
     console.warn('Your data has been submitted', this.detailForm.value);
     this.detailService.saveDetails(this.detailForm.value);
-    this.detailForm.reset();
+    //this.detailForm.reset();
   }
 
 }
