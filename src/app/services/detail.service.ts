@@ -30,11 +30,14 @@ export class DetailService {
     }
 
     console.log(detail);
-    
+
   }
 
   getAllRecords() {
     return this.detailsArr;
   }
 
+  deleteRecord(record: any) {
+    throw new Error('Method not implemented.');
+  }
 }

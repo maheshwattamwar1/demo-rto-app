@@ -3,9 +3,7 @@
 
         <h3>Registered Owner List
             <span class="action-buttons pull-right pb-2">
-                <a class="btn btn-primary mx-1" routerLink="/detail-form" >Add</a>
-                <a class="btn btn-primary mx-1">Update</a>
-                <a class="btn btn-primary mx-1" >Delete</a>
+                <a class="btn btn-primary mx-1" routerLink="/detail-form">Add</a>
             </span>
         </h3>
         
@@ -14,12 +12,18 @@
                 <tr>
                     <td>Owner Name</td>
                     <td>Car Number</td>
+                    <td>Action</td>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
                 <tr *ngFor="let detail of detailsArr">
                     <td>{{detail.ownerName}}</td>
                     <td>{{detail.carNumber}}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" (click)="deleteRecord(detail)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>

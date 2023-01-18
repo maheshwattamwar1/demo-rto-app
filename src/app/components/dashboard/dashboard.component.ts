@@ -18,5 +18,8 @@ export class DashboardComponent implements OnInit {
     this.detailsArr = this.detailService.getAllRecords();
   }
 
+  deleteRecord(record:any) {
+    this.detailService.deleteRecord(record);
+  }
 
 }
