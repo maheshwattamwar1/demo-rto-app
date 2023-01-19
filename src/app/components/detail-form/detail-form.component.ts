@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DetailService } from 'src/app/services/detail.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class DetailFormComponent {
   constructor(private formBuilder: FormBuilder, 
     private detailService: DetailService, 
     private router: Router,
-    private storageService: StorageService) {
+    private storageService: StorageService,
+    private notificationService: NotificationService) {
     
   };
 
@@ -28,12 +30,12 @@ export class DetailFormComponent {
     //console.warn('Your data has been submitted', this.detailForm.value);
     let detail = this.detailForm.value;
     if(this.detailService.validateDetails(detail)) {
-      console.log("Details already present");
+      this.notificationService.showError("Details already present !!", "");
     }
     else {
       this.detailService.addDetails().subscribe(data=> {
         this.storageService.addDetails(detail);
-        console.log("Details added successfully");
+        this.notificationService.showSuccess("Details added successfully","");
       });
     }
     this.detailForm.reset();
