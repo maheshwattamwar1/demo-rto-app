@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,12 +19,13 @@ import { DetailReducer } from './store/reducers/detail.reducer';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     StoreModule.forRoot({
-      
+     
     }),
   ],
   providers: [],

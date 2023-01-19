@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class DetailService {
     { ownerName: 'Tornado', carNumber: 'mha555' }
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   saveDetails(detail:any) {
 
@@ -33,11 +34,14 @@ export class DetailService {
 
   }
 
-  getAllRecords() {
-    return this.detailsArr;
+  getAllRecords() { 
+    let apiUrl = "http://localhost:3000/getDetails";
+    return this.http.get(apiUrl);
   }
 
-  deleteRecord(record: any) {
-    throw new Error('Method not implemented.');
+  deleteRecord() {
+    let apiUrl = "http://localhost:3000/deleteDetails";
+    return this.http.get(apiUrl);
   }
+
 }
