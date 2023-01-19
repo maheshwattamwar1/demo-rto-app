@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
 import { DetailService } from 'src/app/services/detail.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -33,8 +34,13 @@ export class DetailFormComponent {
       this.notificationService.showError("Details already present !!", "");
     }
     else {
-      this.detailService.addDetails().subscribe(data=> {
-        this.storageService.addDetails(detail);
+      this.detailService.addDetails()
+      .pipe(
+        finalize(() => {
+          this.storageService.addDetails(detail);
+        })
+      )
+      .subscribe(data=> {
         this.notificationService.showSuccess("Details added successfully","");
       });
     }
