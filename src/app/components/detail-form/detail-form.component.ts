@@ -29,23 +29,43 @@ export class DetailFormComponent {
   onSubmit(): void {
     // Process detail form data here
     //console.warn('Your data has been submitted', this.detailForm.value);
-    let detail = this.detailForm.value;
-    if(this.detailService.validateDetails(detail)) {
-      this.notificationService.showError("Details already present !!", "");
+    const detail = this.detailForm.value;
+    
+    if(detail && detail.ownerName && detail.carNumber && this.validateForm(detail)) {      
+      if(this.detailService.validateDetails(detail)) {
+        this.notificationService.showError("Details already present !!", "");
+      }
+      else {
+        this.detailService.addDetails()
+        .pipe(
+          finalize(() => {
+            this.storageService.addDetails(detail);
+          })
+        )
+        .subscribe(data=> {
+          this.notificationService.showSuccess("Details added successfully","");
+        });
+      }
+      this.detailForm.reset();
+      this.router.navigate(['/dashboard']);
+    }
+  }
+
+  validateForm(detail: any): boolean {
+    let valid = false;
+    if(detail.carNumber && detail.carNumber.length < 6) {
+      this.notificationService.showError("Please enter 6 digit car number", "");
+    }
+    else if(!(/^[a-zA-Z]+$/.test(detail.carNumber?.substring(0,3)))) {
+      this.notificationService.showError("First 3 digits of car number should be alphabets", "");
+    }
+    else if(!(/^[0-9]+$/.test(detail.carNumber?.substring(3,6)))) {
+      this.notificationService.showError("First 3 digits of car number should be numbers", "");
     }
     else {
-      this.detailService.addDetails()
-      .pipe(
-        finalize(() => {
-          this.storageService.addDetails(detail);
-        })
-      )
-      .subscribe(data=> {
-        this.notificationService.showSuccess("Details added successfully","");
-      });
+      valid = true;
     }
-    this.detailForm.reset();
-    this.router.navigate(['/dashboard']);
+    return valid;
   }
 
 }
