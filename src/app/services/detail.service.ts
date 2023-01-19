@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { StorageService } from './storage.service';
 import { DetailItem } from '../store/models/detailItem.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { DetailItem } from '../store/models/detailItem.model';
 export class DetailService {
 
   detailsArr:DetailItem[] = [];
+  baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient, private storageService: StorageService) { }
 
@@ -25,17 +27,17 @@ export class DetailService {
   }
 
   getAllRecords() { 
-    let apiUrl = "http://localhost:3000/getDetails";
+    let apiUrl = this.baseUrl + "/getDetails";
     return this.http.get(apiUrl);
   }
 
   deleteRecord() {
-    let apiUrl = "http://localhost:3000/deleteDetails";
+    let apiUrl = this.baseUrl + "/deleteDetails";
     return this.http.get(apiUrl);
   }
 
   addDetails() {
-    let apiUrl = "http://localhost:3000/addDetails";
+    let apiUrl = this.baseUrl + "/addDetails";
     return this.http.get(apiUrl);
   }
   
