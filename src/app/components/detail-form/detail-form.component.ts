@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DetailService } from 'src/app/services/detail.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-detail-form',
@@ -14,16 +16,28 @@ export class DetailFormComponent {
     carNumber: ['', Validators.required]
   });
 
-  constructor(private formBuilder: FormBuilder, private detailService: DetailService) {
+  constructor(private formBuilder: FormBuilder, 
+    private detailService: DetailService, 
+    private router: Router,
+    private storageService: StorageService) {
     
   };
 
   onSubmit(): void {
     // Process detail form data here
-    //this.items = this.cartService.clearCart();
-    console.warn('Your data has been submitted', this.detailForm.value);
-    this.detailService.saveDetails(this.detailForm.value);
-    //this.detailForm.reset();
+    //console.warn('Your data has been submitted', this.detailForm.value);
+    let detail = this.detailForm.value;
+    if(this.detailService.validateDetails(detail)) {
+      console.log("Details already present");
+    }
+    else {
+      this.detailService.addDetails().subscribe(data=> {
+        this.storageService.addDetails(detail);
+        console.log("Details added successfully");
+      });
+    }
+    this.detailForm.reset();
+    this.router.navigate(['/dashboard']);
   }
 
 }

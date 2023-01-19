@@ -1,37 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { StorageService } from './storage.service';
+import { DetailItem } from '../store/models/detailItem.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DetailService {
 
-  detailsArr = [
-    { ownerName: 'Celeritas', carNumber: 'mha111' },
-    { ownerName: 'Magneta', carNumber: 'mha222' },
-    { ownerName: 'RubberMan', carNumber: 'mha333' },
-    { ownerName: 'Dynama', carNumber: 'mha444' },
-    { ownerName: 'Tornado', carNumber: 'mha555' }
-  ];
+  detailsArr:DetailItem[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private storageService: StorageService) { }
 
-  saveDetails(detail:any) {
+  validateDetails(detail:any):boolean {
 
+    this.detailsArr = this.storageService.getDetails();
     let hasDuplicate = false;
 
     // check if details already present
     if (this.detailsArr.find(e => (e.ownerName === detail.ownerName && e.carNumber === detail.carNumber))) {
       hasDuplicate=true;
     }
-
-    // add detail only if not duplicate
-    if(hasDuplicate == false) {
-      this.detailsArr.push(detail);
-    }
-
-    console.log(detail);
-
+    return hasDuplicate;
   }
 
   getAllRecords() { 
@@ -44,4 +34,9 @@ export class DetailService {
     return this.http.get(apiUrl);
   }
 
+  addDetails() {
+    let apiUrl = "http://localhost:3000/addDetails";
+    return this.http.get(apiUrl);
+  }
+  
 }

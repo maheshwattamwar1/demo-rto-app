@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DetailService } from 'src/app/services/detail.service';
+import { StorageService } from 'src/app/services/storage.service';
 import { DetailItem } from 'src/app/store/models/detailItem.model';
 
 @Component({
@@ -12,26 +13,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   detailsArr: any;
   detailArrSubscription: Subscription;
-  constructor(private detailService: DetailService) {
+  constructor(private detailService: DetailService,
+    private storageService: StorageService) {
     this.detailArrSubscription = this.detailService.getAllRecords().subscribe((data)=> {
       if(data) {
-        let localData = localStorage.getItem("detailData");
-        if(localData) {
-          this.detailsArr = JSON.parse(localData);
-        }
-        else {
+        this.detailsArr = this.storageService.getDetails();
+        if(this.detailsArr && this.detailsArr.length == 0) {
           this.detailsArr=data;
-          localStorage.setItem("detailData",JSON.stringify(data));
+          this.storageService.saveDetails(data);
         }
       }
     });
   }
 
   ngOnInit() {
-    let localData = localStorage.getItem("detailData");
-    if(localData) {
-      this.detailsArr = JSON.parse(localData);
-    }
+    this.detailsArr = this.storageService.getDetails();
   }
 
   deleteRecord(record:DetailItem) {
@@ -39,7 +35,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.detailsArr = this.detailsArr.filter(function(value:any, index:any, arr:any){ 
         return value.ownerName != record.ownerName;
       });
-      localStorage.setItem("detailData",JSON.stringify(this.detailsArr));
+      this.storageService.saveDetails(this.detailsArr);
     });
   }
 

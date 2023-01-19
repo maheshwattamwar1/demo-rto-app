@@ -8,5 +8,8 @@
     ],
     "deleteDetails" : {
         "success": "true"
+    },
+    "addDetails" : {
+        "success": "true"
     }
 }
