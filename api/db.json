@@ -1,0 +1,15 @@
+{
+    "getDetails" : [
+        { "ownerName": "Celeritas", "carNumber": "mha111" },
+        { "ownerName": "Magneta", "carNumber": "mha222" },
+        { "ownerName": "RubberMan", "carNumber": "mha333" },
+        { "ownerName": "Dynama", "carNumber": "mha444" },
+        { "ownerName": "Tornado", "carNumber": "mha555" }
+    ],
+    "deleteDetails" : {
+        "success": "true"
+    },
+    "addDetails" : {
+        "success": "true"
+    }
+}
