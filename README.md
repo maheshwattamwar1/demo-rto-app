@@ -1,4 +1,4 @@
-# DemoRtoApp
+# UI Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.1.
 
@@ -25,3 +25,21 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+# API Project
+
+## Getting started
+Step 1 - [JSON Server](https://www.npmjs.com/package/json-server) is required to serve APIs on local. If it is not installed on local, please run following command to install
+`npm install -g json-server`
+
+Step 2 - Open command prompt or terminal and go to `api` folder.
+
+Step 3 - Start JSON Server using following command
+`json-server --watch db.json`
+
+Now if you go to [http://localhost:3000](http://localhost:3000), all the API will be listed on page
+
+## Further help
+
+To get more help on the JSON Server go check out the [JSON Server](https://www.npmjs.com/package/json-server) page.
